@@ -1,6 +1,7 @@
 package com.kacau.kacaumap;
 
 import android.content.Intent;
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,6 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.skt.Tmap.TMapMarkerItem;
+import com.skt.Tmap.TMapPOIItem;
+import com.skt.Tmap.TMapPoint;
+import com.skt.Tmap.TMapView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -21,6 +31,12 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        LinearLayout contentTmap = (LinearLayout)findViewById(R.id.contentTmap);
+        TMapView tMapView = new TMapView(this);
+        tMapView.setSKTMapApiKey( "28f96670-7443-42b8-ba92-6cf3e2b1e8f2" );
+        contentTmap.addView( tMapView );
+        tMapView.setCenterPoint(126.956895, 37.504242);
+        tMapView.setZoomLevel(17);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
