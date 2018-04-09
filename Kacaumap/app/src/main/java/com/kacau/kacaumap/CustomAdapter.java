@@ -1,14 +1,13 @@
 package com.kacau.kacaumap;
 
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
-/**
- * Created by 진욱이 on 2018-03-26.
- */
 
 public class CustomAdapter extends PagerAdapter {
     LayoutInflater inflater;
@@ -19,10 +18,10 @@ public class CustomAdapter extends PagerAdapter {
         this.inflater=inflater;
     }
 
+
     //PagerAdapter가 가지고 잇는 View의 개수를 리턴
     //보통 보여줘야하는 이미지 배열 데이터의 길이를 리턴
     @Override
-
     public int getCount() {
         // TODO Auto-generated method stub
         return 5; //이미지 개수 리턴(그림이 10개라서 10을 리턴)
@@ -57,11 +56,12 @@ public class CustomAdapter extends PagerAdapter {
         //ViewPager에 만들어 낸 View 추가
         container.addView(view);
 
+
         //Image가 세팅된 View를 리턴
         return view;
     }
 
-    //화면에 보이지 않은 View는파쾨를 해서 메모리를 관리함.
+    //화면에 보이지 않은 View는 파괴를 해서 메모리를 관리함.
     //첫번째 파라미터 : ViewPager
     //두번째 파라미터 : 파괴될 View의 인덱스(가장 처음부터 0,1,2,3...)
     //세번째 파라미터 : 파괴될 객체(더 이상 보이지 않은 View 객체)

@@ -23,11 +23,16 @@
         </activity>
         <activity android:name=".ManagerEdit" />
         <activity android:name=".Navigation" />
-        <activity android:name=".InternalMap" />
+        <activity android:name=".InternalMap" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Search" />
         <activity android:name=".ManagerSearch" />
-        <activity android:name=".ManagerLogin"></activity>
-        <activity android:name=".ResultMap"></activity>
+        <activity android:name=".ManagerLogin" />
+        <activity android:name=".ResultMap" />
     </application>
 
 </manifest>
