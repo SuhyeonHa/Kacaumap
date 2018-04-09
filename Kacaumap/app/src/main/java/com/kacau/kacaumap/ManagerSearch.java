@@ -21,7 +21,7 @@ public class ManagerSearch extends AppCompatActivity {
 
         ArrayAdapter adapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,LIST_MENU);
 
-        ListView listview=(ListView)findViewById(R.id.listview2);
+        ListView listview=(ListView)findViewById(R.id.listview1);
         listview.setAdapter(adapter);
 
 
