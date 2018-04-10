@@ -56,16 +56,15 @@ import static android.R.attr.tag;
 public class Search extends AppCompatActivity {
 
 
+    public String inputPurpose = "default";
     private static final String TAG_JSON = "webnautes";
     private static final String TAG_Building = "building";
     private static final String TAG_RoomNum = "roomNum";
     private static final String TAG_Name = "name";
     private static final String TAG_Purpose = "purpose";
     private static final String TAG_Dept = "dept";
+    private static final String TAG_GateNum="gateNum";
     private static final String TAG_Telephone = "telephone";
-
-
-
 
     private static String TAG = "phpquerytest";
     ArrayList<HashMap<String, String>> mArrayList;
@@ -78,7 +77,6 @@ public class Search extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_search);
@@ -90,11 +88,18 @@ public class Search extends AppCompatActivity {
         mEditTextSearchKeyword = (EditText) findViewById(R.id.editSearch);
 
         Button button_search = (Button) findViewById(R.id.searchbtn);
+        Button button_1 = (Button) findViewById(R.id.btn1);
+        Button button_2 = (Button) findViewById(R.id.btn2);
+        Button button_3 = (Button) findViewById(R.id.btn3);
+        Button button_4 = (Button) findViewById(R.id.btn4);
+        Button button_5 = (Button) findViewById(R.id.btn5);
+        Button button_6 = (Button) findViewById(R.id.btn6);
+        Button button_7 = (Button) findViewById(R.id.btn7);
+        Button button_8 = (Button) findViewById(R.id.btn8);
 
         button_search.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-
 
                 mArrayList.clear();
 
@@ -102,6 +107,136 @@ public class Search extends AppCompatActivity {
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
 
+                inputPurpose="";
+
+            }
+
+        });
+
+        button_1.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                mArrayList.clear();
+
+                GetData task = new GetData();
+
+                 //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
+                 inputPurpose="학생지원";
+
+                task.execute(mEditTextSearchKeyword.getText().toString());
+            }
+
+        });
+
+        button_2.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                mArrayList.clear();
+
+                GetData task = new GetData();
+
+                //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
+                inputPurpose="강의실";
+
+                task.execute(mEditTextSearchKeyword.getText().toString());
+            }
+
+        });
+
+        button_3.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                mArrayList.clear();
+
+                GetData task = new GetData();
+
+                //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
+                inputPurpose="실습실";
+
+                task.execute(mEditTextSearchKeyword.getText().toString());
+            }
+
+        });
+
+        button_4.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                mArrayList.clear();
+
+                GetData task = new GetData();
+
+                //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
+                inputPurpose="연구실";
+
+                task.execute(mEditTextSearchKeyword.getText().toString());
+            }
+
+        });
+
+        button_5.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                mArrayList.clear();
+
+                GetData task = new GetData();
+
+                //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
+                inputPurpose="학생활동실";
+
+                task.execute(mEditTextSearchKeyword.getText().toString());
+            }
+
+        });
+
+        button_6.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                mArrayList.clear();
+
+                GetData task = new GetData();
+
+                //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
+                inputPurpose="열람실";
+
+                task.execute(mEditTextSearchKeyword.getText().toString());
+            }
+
+        });
+
+        button_7.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                mArrayList.clear();
+
+                GetData task = new GetData();
+
+                //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
+                inputPurpose="편의시설";
+
+                task.execute(mEditTextSearchKeyword.getText().toString());
+            }
+
+        });
+
+        button_8.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                mArrayList.clear();
+
+                GetData task = new GetData();
+
+                //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
+                inputPurpose="기타";
+
+                task.execute(mEditTextSearchKeyword.getText().toString());
             }
 
         });
@@ -140,10 +275,11 @@ public class Search extends AppCompatActivity {
 
                 String dept = item.getString(TAG_Dept);
 
+                String gateNum = item.getString(TAG_GateNum);
+
                 String telephone = item.getString(TAG_Telephone);
 
                 HashMap<String, String> hashMap = new HashMap<>();
-
 
                 hashMap.put(TAG_Building, building);
 
@@ -154,6 +290,8 @@ public class Search extends AppCompatActivity {
                 hashMap.put(TAG_Purpose, purpose);
 
                 hashMap.put(TAG_Dept, dept);
+
+                hashMap.put(TAG_GateNum, gateNum);
 
                 hashMap.put(TAG_Telephone, telephone);
 
@@ -169,10 +307,9 @@ public class Search extends AppCompatActivity {
                     new String[]{TAG_Building, TAG_RoomNum, TAG_Name, TAG_Purpose, TAG_Dept, TAG_Telephone},
 
                     new int[]{R.id.textView_list_building, R.id.textView_list_roomNum, R.id.textView_list_name,
-                            R.id.textView_list_purpose,R.id.textView_list_dept,R.id.textView_list_telephone}
+                            R.id.textView_list_purpose,R.id.textView_list_dept,R.id.textView_list_telephone}//gateNum 추가 안함
 
             );
-
 
             mListViewList.setAdapter(adapter);
 
@@ -206,7 +343,6 @@ public class Search extends AppCompatActivity {
 
         }
 
-
         @Override
 
         protected void onPostExecute(String result) {
@@ -234,23 +370,29 @@ public class Search extends AppCompatActivity {
 
         }
 
-
         @Override
 
-        protected String doInBackground(String... params) {
+            protected String doInBackground(String... params) {
 
             String searchKeyword = params[0];
 
             String serverURL = "http://hyeonixd.cafe24.com/query3.php";
 
-            String postParameters = "keyword=" + searchKeyword;
+            //String postParameters = "keyword=" + searchKeyword;
+
+
+
+            StringBuffer buffer = new StringBuffer();
+
+            buffer.append("keyword").append("=").append(searchKeyword).append("&");
+            buffer.append("purpose").append("=").append(inputPurpose);
+
 
             try {
 
                 URL url = new URL(serverURL);
 
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
 
                 httpURLConnection.setReadTimeout(5000);
 
@@ -264,17 +406,16 @@ public class Search extends AppCompatActivity {
 
                 OutputStream outputStream = httpURLConnection.getOutputStream();
 
-                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.write(buffer.toString().getBytes("UTF-8"));
+                //요기 부분이 서버로 값을 전송하는 부분
 
                 outputStream.flush();
 
                 outputStream.close();
 
-
                 int responseStatusCode = httpURLConnection.getResponseCode();
 
                 Log.d(TAG, "response code - " + responseStatusCode);
-
 
                 InputStream inputStream;
 
@@ -288,42 +429,32 @@ public class Search extends AppCompatActivity {
 
                 }
 
-
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
 
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
 
                 StringBuilder sb = new StringBuilder();
 
                 String line;
 
-
                 while ((line = bufferedReader.readLine()) != null) {
 
                     sb.append(line);
-
                 }
-
 
                 bufferedReader.close();
 
-
                 return sb.toString().trim();
 
-
             } catch (Exception e) {
-
 
                 Log.d(TAG, "InsertData: Error ", e);
 
                 errorString = e.toString();
 
-
                 return null;
 
             }
-
 
         }
 
