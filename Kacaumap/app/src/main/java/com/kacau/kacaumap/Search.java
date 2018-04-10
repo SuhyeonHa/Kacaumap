@@ -185,7 +185,6 @@ public class Search extends AppCompatActivity {
 
                 GetData task = new GetData();
 
-                //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
                 inputPurpose="학생활동실";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
