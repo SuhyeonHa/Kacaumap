@@ -201,7 +201,6 @@ public class Search extends AppCompatActivity {
 
                 GetData task = new GetData();
 
-                //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
                 inputPurpose="열람실";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
@@ -217,7 +216,6 @@ public class Search extends AppCompatActivity {
 
                 GetData task = new GetData();
 
-                //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
                 inputPurpose="편의시설";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
@@ -233,7 +231,6 @@ public class Search extends AppCompatActivity {
 
                 GetData task = new GetData();
 
-                //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
                 inputPurpose="기타";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
@@ -316,7 +313,6 @@ public class Search extends AppCompatActivity {
 
         } catch (JSONException e) {
 
-
             Log.d(TAG, "showResult : ", e);
         }
 
@@ -335,7 +331,6 @@ public class Search extends AppCompatActivity {
         protected void onPreExecute() {
 
             super.onPreExecute();
-
 
             progressDialog = ProgressDialog.show(Search.this,
 
