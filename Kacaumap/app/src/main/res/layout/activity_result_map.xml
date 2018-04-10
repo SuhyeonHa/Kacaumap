@@ -31,18 +31,10 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_map"
-        android:layout_x="280dp"
-        android:layout_y="470dp"
+        android:layout_x="293dp"
+        android:layout_y="360dp"
+
         />
-    <!--<Button-->
-        <!--android:id="@+id/innermap"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="bottom|end"-->
-        <!--android:layout_margin="@dimen/fab_margin"-->
-        <!--android:background="@drawable/innermap"-->
-        <!--android:layout_x="280dp"-->
-        <!--android:layout_y="500dp"/>-->
 
 
 </AbsoluteLayout>
