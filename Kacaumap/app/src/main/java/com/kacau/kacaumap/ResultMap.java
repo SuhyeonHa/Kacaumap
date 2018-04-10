@@ -29,7 +29,8 @@ public class ResultMap extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Intent intent = new Intent(ResultMap.this, InternalMap.class);
+                Intent intent = new Intent(ResultMap.this, InternalMap310.class);
+                // 몇 관 몇 층인지에 따라 보여주는 xml 다르게
                 startActivity(intent);
             }
         });
