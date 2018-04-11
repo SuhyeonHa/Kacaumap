@@ -81,11 +81,17 @@ public class Search extends AppCompatActivity {
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_search);
+
         mTextViewResult = (TextView) findViewById(R.id.textView_main_result);
+
         mListViewList = (ListView) findViewById(R.id.listView_main_list);
+
         mEditTextSearchKeyword = (EditText) findViewById(R.id.editSearch);
+
         Button button_search = (Button) findViewById(R.id.searchbtn);
         Button button_1 = (Button) findViewById(R.id.btn1);
         Button button_2 = (Button) findViewById(R.id.btn2);
@@ -104,12 +110,17 @@ public class Search extends AppCompatActivity {
             GetData task = new GetData();
             task.execute(SearchKeywordOnMap);
         }
+
         button_search.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+
                 mArrayList.clear();
+
                 GetData task = new GetData();
+
                 task.execute(mEditTextSearchKeyword.getText().toString());
+
                 inputPurpose="";
 
             }

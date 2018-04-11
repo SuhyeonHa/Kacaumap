@@ -28,6 +28,7 @@ public class ResultMap extends AppCompatActivity {
         tMapView.setZoomLevel(17);
         tMapView.setLanguage(TMapView.LANGUAGE_KOREAN);
 //지도띄우기
+
         Intent intent =getIntent();
         String searchPOI= intent.getStringExtra("searchPOI");
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -47,7 +48,8 @@ public class ResultMap extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                Intent intent = new Intent(ResultMap.this, InternalMap.class);
+                Intent intent = new Intent(ResultMap.this, InternalMap310.class);
+                // 몇 관 몇 층인지에 따라 보여주는 xml 다르게
                 startActivity(intent);
             }
         });
