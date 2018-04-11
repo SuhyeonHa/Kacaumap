@@ -1,31 +1,41 @@
 package com.kacau.kacaumap;
 
+import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.view.View;
+import android.widget.LinearLayout;
 
-/**
- * Created by 진욱이 on 2018-03-26.
- */
 
 public class CustomAdapter extends PagerAdapter {
     LayoutInflater inflater;
+    int index;
+    Button button;
+
+    public int getIndex() {
+        return this.index;
+    }
 
     public CustomAdapter(LayoutInflater inflater) {
         // TODO Auto-generated constructor stub
         //전달 받은 LayoutInflater를 멤버변수로 전달
         this.inflater=inflater;
+
     }
 
     //PagerAdapter가 가지고 잇는 View의 개수를 리턴
     //보통 보여줘야하는 이미지 배열 데이터의 길이를 리턴
     @Override
-
     public int getCount() {
         // TODO Auto-generated method stub
-        return 5; //이미지 개수 리턴(그림이 10개라서 10을 리턴)
+        return 7; //이미지 개수 리턴(그림이 10개라서 10을 리턴)
     }
 
     //ViewPager가 현재 보여질 Item(View객체)를 생성할 필요가 있는 때 자동으로 호출
@@ -35,8 +45,6 @@ public class CustomAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-
-        // TODO Auto-generated method stub
 
         View view=null;
 
@@ -48,20 +56,51 @@ public class CustomAdapter extends PagerAdapter {
         //만들어진 View안에 있는 ImageView 객체 참조
         //위에서 inflated 되어 만들어진 view로부터 findViewById()를 해야 하는 것에 주의.
 
-        ImageView img= (ImageView)view.findViewById(R.id.img_viewpager_childimage);
+        ImageView img= (ImageView) view.findViewById(R.id.img_viewpager_childimage);
 
         //ImageView에 현재 position 번째에 해당하는 이미지를 보여주기 위한 작업
         //현재 position에 해당하는 이미지를 setting
-        img.setImageResource(R.drawable.gametitle_01+position);
+
+        index = position;
+
+        if(position == 0) { // B1층
+            img.setImageResource(R.drawable.se_b1);
+            //button = (Button) inflater.findViewById(R.id.se_b1);
+            Log.e("button0", String.valueOf(button));
+            //button.setTextColor(Color.parseColor("#0174DF"));
+        }
+        else if (position == 1) { // 1층
+            img.setImageResource(R.drawable.se_1);
+            //button = (Button) view2.findViewById(R.id.se_1);
+            Log.e("button1", String.valueOf(button));
+            //button.setTextColor(Color.parseColor("#0174DF"));
+        }
+        else if (position == 2) { // 2층
+            img.setImageResource(R.drawable.se_2);
+        }
+        else if (position == 3) { // 3층
+            img.setImageResource(R.drawable.se_3);
+        }
+        else if (position == 4) { // 4층
+            img.setImageResource(R.drawable.se_4);
+        }
+        else if (position == 5) { // 5층
+            img.setImageResource(R.drawable.se_5);
+        }
+        else { // 6층
+            img.setImageResource(R.drawable.se_6);
+        }
 
         //ViewPager에 만들어 낸 View 추가
         container.addView(view);
+        //button.setTextColor(Color.parseColor("#0174DF"));
 
         //Image가 세팅된 View를 리턴
         return view;
     }
 
-    //화면에 보이지 않은 View는파쾨를 해서 메모리를 관리함.
+
+    //화면에 보이지 않은 View는 파괴를 해서 메모리를 관리함.
     //첫번째 파라미터 : ViewPager
     //두번째 파라미터 : 파괴될 View의 인덱스(가장 처음부터 0,1,2,3...)
     //세번째 파라미터 : 파괴될 객체(더 이상 보이지 않은 View 객체)
@@ -73,10 +112,11 @@ public class CustomAdapter extends PagerAdapter {
         //ViewPager에서 보이지 않는 View는 제거
         //세번째 파라미터가 View 객체 이지만 데이터 타입이 Object여서 형변환 실시
         container.removeView((View)object);
+
     }
 
 
-    //instantiateItem() 메소드에서 리턴된 Ojbect가 View가  맞는지 확인하는 메소드
+    //instantiateItem() 메소드에서 리턴된 Object가 View가  맞는지 확인하는 메소드
     @Override
     public boolean isViewFromObject(View v, Object obj) {
         // TODO Auto-generated method stub

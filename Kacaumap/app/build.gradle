@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.kacau.kacaumap"
         minSdkVersion 15
@@ -30,4 +30,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     implementation files('libs/com.skt.Tmap_1.52.jar')
     implementation files('libs/com.skt.Tmap_1.52.jar')
+    compile 'com.github.chrisbanes:PhotoView:2.1.3'
 }
