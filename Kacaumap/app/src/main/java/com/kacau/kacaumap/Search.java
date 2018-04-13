@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.support.annotation.NonNull;
-
 import android.support.v7.app.AppCompatActivity;
 
 import android.util.Log;
@@ -75,12 +74,11 @@ public class Search extends AppCompatActivity {
     ListView mListViewList;
     EditText mEditTextSearchKeyword;
     String mJsonString;
-
     String gpsJsonString;
-    String latitude;
-    String longitude;
-    ArrayList<String> searchPOI=new ArrayList<String>();;
-
+    //String latitude;
+    //String longitude;
+    //ArrayList<String> searchPOI=new ArrayList<String>();
+    //String[] searchPOI;
     private TextView mTextViewResult;
 
     @Override
@@ -110,9 +108,7 @@ public class Search extends AppCompatActivity {
         String SearchKeywordOnMap=null;
         Intent intent =getIntent();
         SearchKeywordOnMap= intent.getStringExtra("SearchKeywordOnMap");
-
         mEditTextSearchKeyword.setText(SearchKeywordOnMap);
-
 
         if(SearchKeywordOnMap!=null) {
             GetData task = new GetData();
@@ -143,8 +139,8 @@ public class Search extends AppCompatActivity {
 
                 GetData task = new GetData();
 
-                 //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
-                 inputPurpose="학생지원";
+                //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
+                inputPurpose="학생지원";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
             }
@@ -259,31 +255,26 @@ public class Search extends AppCompatActivity {
 
         });
 
+
+
         mListViewList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 GetGPS gpsTask = new GetGPS();
                 gpsTask.execute(mArrayList.get(position).get(TAG_GateNum));
-                latitude=substringBetween(gpsJsonString,"latitude\":\"","\",");
-                longitude=substringBetween(gpsJsonString,"longitude\":\"","\",");
                 String item = String.valueOf(parent.getItemAtPosition(position));
                 Toast.makeText(Search.this, item, Toast.LENGTH_SHORT).show();
-                searchPOI.add(mArrayList.get(position).get(TAG_Building));
-                searchPOI.add(mArrayList.get(position).get(TAG_RoomNum));
-                searchPOI.add(latitude);
-                searchPOI.add(longitude);
+                String gps=gpsJsonString;
+                String latitude=substringBetween(gps,"latitude\":\"","\",");
+                String longitude=substringBetween(gps,"longitude\":\"","\",");
+                String[] searchPOI={mArrayList.get(position).get(TAG_Building),mArrayList.get(position).get(TAG_RoomNum),latitude,longitude};
 
                 Intent intent = new Intent(Search.this, ResultMap.class);
-
-                Bundle B=new Bundle();
-                intent.putExtra("bundle",B);
                 intent.putExtra("POI",searchPOI);
-
                 startActivity(intent);
+
             }});
-
         mArrayList = new ArrayList<>();
-
     }
 
     private void showResult() {
@@ -359,9 +350,11 @@ public class Search extends AppCompatActivity {
 
             Log.d(TAG, "showResult : ", e);
         }
+
+
     }
 
-	private class GetData extends AsyncTask<String, Void, String> {
+    private class GetData extends AsyncTask<String, Void, String> {
 
 
         ProgressDialog progressDialog;
@@ -409,7 +402,7 @@ public class Search extends AppCompatActivity {
 
         @Override
 
-            protected String doInBackground(String... params) {
+        protected String doInBackground(String... params) {
 
             String searchKeyword = params[0];
 
@@ -500,108 +493,107 @@ public class Search extends AppCompatActivity {
     private class GetGPS extends AsyncTask<String, Void, String> {
 
 
-    ProgressDialog progressDialog;
+        ProgressDialog progressDialog;
 
-    String errorString = null;
+        String errorString = null;
 
-    @Override
+        @Override
 
-    protected void onPreExecute() {
+        protected void onPreExecute() {
 
-        super.onPreExecute();
+            super.onPreExecute();
 
-        progressDialog = ProgressDialog.show(Search.this,
+            progressDialog = ProgressDialog.show(Search.this,
 
-                "Please Wait", null, true, true);
+                    "Please Wait", null, true, true);
 
-    }
+        }
 
-    @Override
-    protected String doInBackground(String... params) {
+        @Override
+        protected String doInBackground(String... params) {
 
-        String gateNum = params[0];
+            String gateNum = params[0];
 
-        String serverURL = "http://hyeonixd.cafe24.com/query4.php";
+            String serverURL = "http://hyeonixd.cafe24.com/query4.php";
 
-        StringBuffer buffer = new StringBuffer();
+            StringBuffer buffer = new StringBuffer();
 
-        buffer.append("gateNum").append("=").append(gateNum);
+            buffer.append("gateNum").append("=").append(gateNum);
 
 
-        try {
+            try {
 
-            URL url = new URL(serverURL);
+                URL url = new URL(serverURL);
 
-            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
-            httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setReadTimeout(5000);
 
-            httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
 
-            httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setRequestMethod("POST");
 
-            httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoInput(true);
 
-            httpURLConnection.connect();
+                httpURLConnection.connect();
 
-            OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStream outputStream = httpURLConnection.getOutputStream();
 
-            outputStream.write(buffer.toString().getBytes("UTF-8"));
-            //요기 부분이 서버로 값을 전송하는 부분
+                outputStream.write(buffer.toString().getBytes("UTF-8"));
+                //요기 부분이 서버로 값을 전송하는 부분
 
-            outputStream.flush();
+                outputStream.flush();
 
-            outputStream.close();
+                outputStream.close();
 
-            int responseStatusCode = httpURLConnection.getResponseCode();
+                int responseStatusCode = httpURLConnection.getResponseCode();
 
-            Log.d(TAG, "response code - " + responseStatusCode);
+                Log.d(TAG, "response code - " + responseStatusCode);
 
-            InputStream inputStream;
+                InputStream inputStream;
 
-            if (responseStatusCode == HttpURLConnection.HTTP_OK) {
+                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
 
-                inputStream = httpURLConnection.getInputStream();
+                    inputStream = httpURLConnection.getInputStream();
 
-            } else {
+                } else {
 
-                inputStream = httpURLConnection.getErrorStream();
+                    inputStream = httpURLConnection.getErrorStream();
+
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+
+                gpsJsonString=sb.toString().trim();
+                return gpsJsonString;
+
+            } catch (Exception e) {
+
+                Log.d(TAG, "InsertData: Error ", e);
+
+                errorString = e.toString();
+
+                return null;
 
             }
-
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-            StringBuilder sb = new StringBuilder();
-
-            String line;
-
-            while ((line = bufferedReader.readLine()) != null) {
-
-                sb.append(line);
-            }
-
-            bufferedReader.close();
-
-            gpsJsonString=sb.toString().trim();
-            return gpsJsonString;
-
-        } catch (Exception e) {
-
-            Log.d(TAG, "InsertData: Error ", e);
-
-            errorString = e.toString();
-
-            return null;
 
         }
 
     }
 
-}
-
-    @NonNull
     private String substringBetween(String str, String open, String close) {
         if (str == null || open == null || close == null) {
             return "31";

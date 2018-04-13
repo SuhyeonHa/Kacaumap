@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="perpose">
+    <string-array name="purpose">
         <item>학생지원</item>
         <item>강의실</item>
         <item>실습실</item>

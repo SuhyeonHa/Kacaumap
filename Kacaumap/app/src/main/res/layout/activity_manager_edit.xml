@@ -20,13 +20,14 @@
         />
 
     <TextView
+        android:id="@+id/bldroom"
         android:layout_width="169dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:padding="10dp"
         android:textColor="#000000"
         android:textSize="20dp"
-        android:text="310관 725호" />
+        android:text="none" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,6 +38,7 @@
         />
 
     <EditText
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -57,7 +59,7 @@
         android:orientation="horizontal" >
 
         <Spinner
-            android:id="@+id/spinner_perpose"
+            android:id="@+id/spinner_purpose"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="40dp"
@@ -89,6 +91,15 @@
 
     </LinearLayout>>
 
+    <EditText
+        android:id="@+id/telephone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:text="전화번호 입력하세요."
+        />
+
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -97,19 +108,19 @@
         android:layout_gravity="center_horizontal">
 
         <Button
+            android:id="@+id/cancel"
             android:layout_marginTop="40dp"
             android:layout_width="150dp"
             android:layout_height="40dp"
-            android:id="@+id/cancel"
             android:text="CANCEL"
             android:textColor="#8e9193"
             android:background="#00000000"  />
 
         <Button
+            android:id="@+id/update"
             android:layout_marginTop="40dp"
             android:layout_width="150dp"
             android:layout_height="40dp"
-            android:id="@+id/update"
             android:text="UPDATE"
             android:textColor="#035e8f"
             android:background="#00000000"/>

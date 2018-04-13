@@ -24,10 +24,12 @@ public class ResultMap extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_map);
-        Bundle B=getIntent().getExtras();
-        ArrayList<String> searchPOI=B.getStringArrayList("POI");
-        latitude= Double.parseDouble(searchPOI.get(2));
-        longitude=Double.parseDouble(searchPOI.get(3));
+        //Bundle B=getIntent().getExtras();
+        //ArrayList<String> searchPOI=B.getStringArrayList("POI");
+        Intent intent = getIntent();
+        String[] POI=intent.getStringArrayExtra("POI");
+        latitude= Double.parseDouble(POI[2]);
+        longitude=Double.parseDouble(POI[3]);
 
         LinearLayout ResultTmap = (LinearLayout)findViewById(R.id.ResultTmap);
         TMapView tMapView = new TMapView(this);
@@ -40,7 +42,7 @@ public class ResultMap extends AppCompatActivity {
 
         ////여기부터 마커
         TMapMarkerItem markerItem1 = new TMapMarkerItem();
-        TMapPoint tMapPoint1 = new TMapPoint(latitude,longitude);  
+        TMapPoint tMapPoint1 = new TMapPoint(latitude,longitude);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mapmarker);
         markerItem1.setIcon(bitmap); // 마커 아이콘 지정
         markerItem1.setPosition(0.5f, 1.0f); // 마커의 중심점을 중앙, 하단으로 설정
@@ -48,9 +50,7 @@ public class ResultMap extends AppCompatActivity {
         markerItem1.setName("마커"); // 마커의 타이틀 지정
         tMapView.addMarkerItem("markerItem1", markerItem1); // 지도에 마커 추가
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
