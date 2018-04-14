@@ -7,8 +7,11 @@
     tools:context="com.kacau.kacaumap.ManagerLogin">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="58dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -18,29 +21,40 @@
                 android:id="@+id/admin"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
+                android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:text="admin"
-                android:paddingTop="10dp"
+                android:layout_marginTop="115dp"
                 android:paddingLeft="5dp"
-                android:textSize="20dp"
-                android:layout_marginTop="151dp" />
+                android:paddingTop="10dp"
+                android:text="admin"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/idInput"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/admin"
+                android:layout_centerHorizontal="true"
+                android:hint="id" />
+
 
             <EditText
                 android:id="@+id/passwordInput"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
-                android:layout_below="@+id/admin"
+                android:layout_below="@+id/idInput"
                 android:layout_centerHorizontal="true"
-                android:hint="Password" />
+                android:hint="Password"
+                android:password="true"/>
 
             <Button
                 android:id="@+id/loginButton"
                 android:layout_width="150dp"
                 android:layout_height="55dp"
                 android:layout_below="@+id/passwordInput"
+                android:layout_centerHorizontal="true"
                 android:text="로그인"
-                android:textAllCaps="false"
-                android:layout_centerHorizontal="true"/>
+                android:textAllCaps="false" />
 
         </RelativeLayout>
     </LinearLayout>
