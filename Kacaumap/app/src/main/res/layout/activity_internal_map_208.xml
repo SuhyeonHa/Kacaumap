@@ -15,30 +15,30 @@
 
     <!-- for bld 208 -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="59dp"
-            android:orientation="horizontal">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="59dp"-->
+            <!--android:orientation="horizontal">-->
 
-            <EditText
-                android:id="@+id/editSearch"
-                android:layout_width="288dp"
-                android:layout_height="wrap_content"
-                android:hint="검색어를 입력하세요." />
+            <!--<EditText-->
+                <!--android:id="@+id/editSearch"-->
+                <!--android:layout_width="288dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="검색어를 입력하세요." />-->
 
-            <Button
-                android:id="@+id/searchbtn"
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/search_icon" />
-            <Button
-                android:id="@+id/cancel_action"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/cancel" />
+            <!--<Button-->
+                <!--android:id="@+id/searchbtn"-->
+                <!--android:layout_width="45dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/search_icon" />-->
+            <!--<Button-->
+                <!--android:id="@+id/cancel_action"-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:background="@drawable/cancel" />-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"

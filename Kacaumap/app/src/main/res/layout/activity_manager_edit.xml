@@ -42,7 +42,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:text="컴퓨터공학부 과사무실"
         />
 
     <TextView
@@ -91,12 +90,19 @@
 
     </LinearLayout>>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:padding="10dp"
+        android:text="전화번호"
+        />
+
     <EditText
         android:id="@+id/telephone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:text="전화번호 입력하세요."
         />
 
 

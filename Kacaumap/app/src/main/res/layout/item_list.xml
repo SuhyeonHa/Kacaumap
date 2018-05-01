@@ -10,55 +10,55 @@
 
     <TextView
         android:id="@+id/textView_list_building"
-        android:layout_width="0dp"
+        android:layout_width="3dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:layout_margin="5dp"
-        android:padding="5dp" />
+        android:layout_margin="1dp"
+        android:padding="1dp" />
 
 
     <TextView
         android:id="@+id/textView_list_roomNum"
-        android:layout_width="0dp"
+        android:layout_width="5dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:layout_margin="5dp"
-        android:padding="5dp" />
+        android:layout_margin="1dp"
+        android:padding="1dp" />
 
 
     <TextView
         android:id="@+id/textView_list_name"
-        android:layout_width="0dp"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:layout_margin="5dp"
-        android:padding="5dp" />
+        android:layout_margin="1dp"
+        android:padding="1dp" />
 
 
     <TextView
         android:id="@+id/textView_list_purpose"
-        android:layout_width="0dp"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:layout_margin="5dp"
-        android:padding="5dp" />
+        android:layout_margin="1dp"
+        android:padding="1dp" />
 
 
     <TextView
         android:id="@+id/textView_list_dept"
-        android:layout_width="0dp"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:layout_margin="5dp"
-        android:padding="5dp" />
+        android:layout_margin="1dp"
+        android:padding="1dp" />
 
 
     <TextView
         android:id="@+id/textView_list_telephone"
-        android:layout_width="0dp"
+        android:layout_width="5dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:layout_margin="5dp"
-        android:padding="5dp" />
+        android:layout_margin="1dp"
+        android:padding="1dp" />
 
 </LinearLayout>

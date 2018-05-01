@@ -71,14 +71,9 @@ public class Search extends AppCompatActivity {
 
     private static String TAG = "phpquerytest";
     ArrayList<HashMap<String, String>> mArrayList;
+    String mJsonString;
     ListView mListViewList;
     EditText mEditTextSearchKeyword;
-    String mJsonString;
-    String gpsJsonString;
-    //String latitude;
-    //String longitude;
-    //ArrayList<String> searchPOI=new ArrayList<String>();
-    //String[] searchPOI;
     private TextView mTextViewResult;
 
     @Override
@@ -260,14 +255,11 @@ public class Search extends AppCompatActivity {
         mListViewList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                GetGPS gpsTask = new GetGPS();
-                gpsTask.execute(mArrayList.get(position).get(TAG_GateNum));
+
                 String item = String.valueOf(parent.getItemAtPosition(position));
                 Toast.makeText(Search.this, item, Toast.LENGTH_SHORT).show();
-                String gps=gpsJsonString;
-                String latitude=substringBetween(gps,"latitude\":\"","\",");
-                String longitude=substringBetween(gps,"longitude\":\"","\",");
-                String[] searchPOI={mArrayList.get(position).get(TAG_Building),mArrayList.get(position).get(TAG_RoomNum),latitude,longitude};
+
+                String[] searchPOI={mArrayList.get(position).get(TAG_Building),mArrayList.get(position).get(TAG_RoomNum),mArrayList.get(position).get(TAG_GateNum)};
 
                 Intent intent = new Intent(Search.this, ResultMap.class);
                 intent.putExtra("POI",searchPOI);
@@ -489,123 +481,4 @@ public class Search extends AppCompatActivity {
         }
 
     }
-
-    private class GetGPS extends AsyncTask<String, Void, String> {
-
-
-        ProgressDialog progressDialog;
-
-        String errorString = null;
-
-        @Override
-
-        protected void onPreExecute() {
-
-            super.onPreExecute();
-
-            progressDialog = ProgressDialog.show(Search.this,
-
-                    "Please Wait", null, true, true);
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            String gateNum = params[0];
-
-            String serverURL = "http://hyeonixd.cafe24.com/query4.php";
-
-            StringBuffer buffer = new StringBuffer();
-
-            buffer.append("gateNum").append("=").append(gateNum);
-
-
-            try {
-
-                URL url = new URL(serverURL);
-
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-                httpURLConnection.setReadTimeout(5000);
-
-                httpURLConnection.setConnectTimeout(5000);
-
-                httpURLConnection.setRequestMethod("POST");
-
-                httpURLConnection.setDoInput(true);
-
-                httpURLConnection.connect();
-
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-
-                outputStream.write(buffer.toString().getBytes("UTF-8"));
-                //요기 부분이 서버로 값을 전송하는 부분
-
-                outputStream.flush();
-
-                outputStream.close();
-
-                int responseStatusCode = httpURLConnection.getResponseCode();
-
-                Log.d(TAG, "response code - " + responseStatusCode);
-
-                InputStream inputStream;
-
-                if (responseStatusCode == HttpURLConnection.HTTP_OK) {
-
-                    inputStream = httpURLConnection.getInputStream();
-
-                } else {
-
-                    inputStream = httpURLConnection.getErrorStream();
-
-                }
-
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                StringBuilder sb = new StringBuilder();
-
-                String line;
-
-                while ((line = bufferedReader.readLine()) != null) {
-
-                    sb.append(line);
-                }
-
-                bufferedReader.close();
-
-                gpsJsonString=sb.toString().trim();
-                return gpsJsonString;
-
-            } catch (Exception e) {
-
-                Log.d(TAG, "InsertData: Error ", e);
-
-                errorString = e.toString();
-
-                return null;
-
-            }
-
-        }
-
-    }
-
-    private String substringBetween(String str, String open, String close) {
-        if (str == null || open == null || close == null) {
-            return "31";
-        }
-        int start = str.indexOf(open);
-        if (start != -1) {
-            int end = str.indexOf(close, start + open.length());
-            if (end != -1) {
-                return str.substring(start + open.length(), end);
-            }
-        }
-        return "32";
-    }
-
 }

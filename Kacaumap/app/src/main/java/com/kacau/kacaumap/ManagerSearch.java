@@ -142,6 +142,7 @@ public class ManagerSearch extends AppCompatActivity {
                 intent.putExtra("name",mArrayList.get(position).get(TAG_Name));
                 intent.putExtra("purpose", mArrayList.get(position).get(TAG_Purpose));
                 intent.putExtra("dept", mArrayList.get(position).get(TAG_Dept));
+                intent.putExtra("telephone", mArrayList.get(position).get(TAG_Telephone));
                 intent.putExtra("keyword", mEditTextSearchKeyword.getText().toString());
 
                 String[] searchInfo ={mArrayList.get(position).get(TAG_Building), mArrayList.get(position).get(TAG_RoomNum), mArrayList.get(position).get(TAG_GateNum)};

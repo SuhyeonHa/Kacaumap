@@ -86,12 +86,14 @@ public class ManagerEdit extends AppCompatActivity {
     String purpose="";
     String dept="";
     String keyword="";
+    String telephone="";
 
     int pPosition=0;
     int dPosition=0;
 
     TextView textview;
     EditText editText;
+    EditText editText2;
     Button cButton;
     Button uButton;
 
@@ -105,6 +107,7 @@ public class ManagerEdit extends AppCompatActivity {
 
         textview = (TextView)findViewById(R.id.bldroom);
         editText = (EditText)findViewById(R.id.name);
+        editText2 = (EditText)findViewById(R.id.telephone);
 
         Intent intent = getIntent();
         bld = intent.getStringExtra("bld");
@@ -112,10 +115,13 @@ public class ManagerEdit extends AppCompatActivity {
         name = intent.getStringExtra("name");
         purpose = intent.getStringExtra("purpose");
         dept = intent.getStringExtra("dept");
+        telephone = intent.getStringExtra("telephone");
         keyword = intent.getStringExtra("keyword");
 
         textview.setText(bld+" "+room);
         editText.setText(name);
+        editText2.setText(telephone);
+
 
         Spinner purposeSpinner = (Spinner)findViewById(R.id.spinner_purpose);
         ArrayAdapter purposeAdapter = ArrayAdapter.createFromResource(this,
