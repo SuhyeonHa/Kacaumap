@@ -35,7 +35,6 @@ public class ResultMap extends AppCompatActivity {
     String bld;
     String room;
     String floor;
-    String gateNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +44,9 @@ public class ResultMap extends AppCompatActivity {
         String[] POI=intent.getStringArrayExtra("POI");
         bld = POI[0];
         room = POI[1];
-        gateNum=POI[2];
 
-        GetGPS gpsTask = new GetGPS();
-        gpsTask.execute(gateNum);
+        GetBldGPS getBldGPS = new GetBldGPS();
+        getBldGPS.execute(bld);
 
         LinearLayout ResultTmap = (LinearLayout) findViewById(R.id.ResultTmap);
         tMapView = new TMapView(this);
@@ -65,21 +63,54 @@ public class ResultMap extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-
                 Intent intent;
-
                 //floor = calFloor(room);
 
-                if (bld.equals("204")) {
-                    intent = new Intent(ResultMap.this, InternalMap204.class);
+                if(bld.equals("101")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap101.class);
+                }else if(bld.equals("102")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap102.class);
+                }else if(bld.equals("103")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap103.class);
+                }else if(bld.equals("104")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap104.class);
+                }else if(bld.equals("105")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap105.class);
+                }else if(bld.equals("106")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap106.class);
+                }else if(bld.equals("107")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap107.class);
+                }else if(bld.equals("201")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap201.class);
+                }else if(bld.equals("202")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap202.class);
+                }else if(bld.equals("203")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap203.class);
+                }else if(bld.equals("204")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap204.class);
+                }else if(bld.equals("207")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap207.class);
+                }else if(bld.equals("208")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap208.class);
+                }else if(bld.equals("209")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap209.class);
+                }else if(bld.equals("301")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap301.class);
+                }else if(bld.equals("302")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap302.class);
+                }else if(bld.equals("303")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap303.class);
+                }else if(bld.equals("304")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap304.class);
+                }else if(bld.equals("305")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap305.class);
+                }else if(bld.equals("307")){
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap307.class);
+                }else{ //310관
+                    intent = new Intent(ResultMap.this, InternalMap.InternalMap310.class);}
 
-                } else if (bld.equals("208")) {
-                    intent = new Intent(ResultMap.this, InternalMap208.class);
-                } else {
-                    intent = new Intent(ResultMap.this, InternalMap310.class); // 310
-                }
-                intent.putExtra("floor", floor);
-                startActivity(intent);
+                    intent.putExtra("floor", floor);
+                    startActivity(intent);
             }
         });
 
@@ -99,15 +130,13 @@ public class ResultMap extends AppCompatActivity {
         return "gpsJsonIsNull";
     }
 
-    private class GetGPS extends AsyncTask<String, Void, String> {
+    private class GetBldGPS extends AsyncTask<String, Void, String> {
 
 
         ProgressDialog progressDialog;
-
         String errorString = null;
 
         @Override
-
         protected void onPreExecute() {
 
             super.onPreExecute();
@@ -135,8 +164,8 @@ public class ResultMap extends AppCompatActivity {
             } else {
 
                 gpsJsonString = result;
-                String latitude=substringBetween(gpsJsonString,"latitude\":\"","\",");
-                String longitude=substringBetween(gpsJsonString,"longitude\":\"","\",");
+                String latitude=substringBetween(gpsJsonString,"latitude\":\"","\"");
+                String longitude=substringBetween(gpsJsonString,"longitude\":\"","\"");
                 ////여기부터 마커
                 TMapMarkerItem markerItem1 = new TMapMarkerItem();
                 TMapPoint tMapPoint1 = new TMapPoint(Double.parseDouble(latitude), Double.parseDouble(longitude));   //이 정보를 변수로 설정하고 클릭시 받아옴
@@ -147,22 +176,20 @@ public class ResultMap extends AppCompatActivity {
                 markerItem1.setName("마커"); // 마커의 타이틀 지정
                 tMapView.addMarkerItem("markerItem1", markerItem1); // 지도에 마커 추가
 
-                Log.e("onPost", "onPostElse");
             }
-
         }
 
 
         @Override
         protected String doInBackground(String... params) {
 
-            String gateNum = params[0];
+            String building = params[0];
 
-            String serverURL = "http://hyeonixd.cafe24.com/query4.php";
+            String serverURL = "http://hyeonixd.cafe24.com/buildingGpsQuery.php";
 
             StringBuffer buffer = new StringBuffer();
 
-            buffer.append("gateNum").append("=").append(gateNum);
+            buffer.append("building").append("=").append(building);
 
 
             try {
@@ -233,19 +260,4 @@ public class ResultMap extends AppCompatActivity {
             }
         }
     }
-//    protected String calFloor(String room) {
-//        char[] c_arr = room.toCharArray();
-//        int length = room.length();
-//        String temp;
-//
-//        if (c_arr[0] == 'B') {
-//            temp = "b" + c_arr[1];
-//        } else if (length == 3) {
-//            temp = Character.toString(c_arr[0]);
-//        } else {
-//            temp = Character.toString(c_arr[0]) + Character.toString(c_arr[1]);
-//        }
-//
-//        return temp;
-//    }
 }

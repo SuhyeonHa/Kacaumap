@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.WRITE_OWNER_DATA"></uses-permission>
     <uses-permission android:name="android.permission.READ_OWNER_DATA"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 
     <application
@@ -28,13 +29,13 @@
         </activity>
         <activity android:name=".ManagerEdit" />
         <activity android:name=".Navigation" />
-        <activity android:name=".InternalMap208" />
         <activity android:name=".Search" />
         <activity android:name=".ManagerSearch" />
         <activity android:name=".ManagerLogin" />
         <activity android:name=".ResultMap" />
-        <activity android:name=".InternalMap204" />
-        <activity android:name=".InternalMap310" />
+        <activity android:name=".NavigationMap" />
+        <activity android:name=".NaviStartSearch" />
+        <activity android:name=".NaviDestSearch" />
     </application>
 
 </manifest>

@@ -66,7 +66,6 @@ public class Search extends AppCompatActivity {
     private static final String TAG_Name = "name";
     private static final String TAG_Purpose = "purpose";
     private static final String TAG_Dept = "dept";
-    private static final String TAG_GateNum="gateNum";
     private static final String TAG_Telephone = "telephone";
 
     private static String TAG = "phpquerytest";
@@ -259,7 +258,7 @@ public class Search extends AppCompatActivity {
                 String item = String.valueOf(parent.getItemAtPosition(position));
                 Toast.makeText(Search.this, item, Toast.LENGTH_SHORT).show();
 
-                String[] searchPOI={mArrayList.get(position).get(TAG_Building),mArrayList.get(position).get(TAG_RoomNum),mArrayList.get(position).get(TAG_GateNum)};
+                String[] searchPOI={mArrayList.get(position).get(TAG_Building),mArrayList.get(position).get(TAG_RoomNum)};
 
                 Intent intent = new Intent(Search.this, ResultMap.class);
                 intent.putExtra("POI",searchPOI);
@@ -299,8 +298,6 @@ public class Search extends AppCompatActivity {
 
                 String dept = item.getString(TAG_Dept);
 
-                String gateNum = item.getString(TAG_GateNum);
-
                 String telephone = item.getString(TAG_Telephone);
 
                 HashMap<String, String> hashMap = new HashMap<>();
@@ -314,8 +311,6 @@ public class Search extends AppCompatActivity {
                 hashMap.put(TAG_Purpose, purpose);
 
                 hashMap.put(TAG_Dept, dept);
-
-                hashMap.put(TAG_GateNum, gateNum);
 
                 hashMap.put(TAG_Telephone, telephone);
 
@@ -398,7 +393,7 @@ public class Search extends AppCompatActivity {
 
             String searchKeyword = params[0];
 
-            String serverURL = "http://hyeonixd.cafe24.com/query3.php";
+            String serverURL = "http://hyeonixd.cafe24.com/searchQuery.php";
 
             //String postParameters = "keyword=" + searchKeyword;
 
