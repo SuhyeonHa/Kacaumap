@@ -15,106 +15,43 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="59dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
 
             <EditText
                 android:id="@+id/editSearch"
                 android:layout_width="288dp"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:hint="검색어를 입력하세요." />
 
             <Button
-                android:id="@+id/searchbtn"
+                android:id="@+id/searchbtn_manager"
                 android:layout_width="45dp"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:background="@drawable/search_icon" />
 
         </LinearLayout>
 
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-
-            <Button
-                android:id="@+id/btn1"
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:background="#00000000"
-                android:text="학생지원"
-                android:textColor="#035e8f"/>
-
-            <Button
-                android:id="@+id/btn2"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:text="강의실"
-                android:textColor="#035e8f"
-                android:background="#00000000"/>
-
-            <Button
-                android:id="@+id/btn3"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:text="실습실"
-                android:textColor="#035e8f"
-                android:background="#00000000"/>
-
-            <Button
-                android:id="@+id/btn4"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:text="연구실"
-                android:textColor="#035e8f"
-                android:background="#00000000"/>
-        </LinearLayout>
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-
-            <Button
-                android:text="학생활동실"
-                android:id="@+id/btn5"
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:textColor="#035e8f"
-                android:background="#00000000"/>
-            <Button
-                android:text="열람실"
-                android:id="@+id/btn6"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:textColor="#035e8f"
-                android:background="#00000000"/>
-            <Button
-                android:text="편의시설"
-                android:id="@+id/btn7"
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:textColor="#035e8f"
-                android:background="#00000000"/>
-            <Button
-                android:text="기타"
-                android:id="@+id/btn8"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:textColor="#035e8f"
-                android:background="#00000000"/>
-        </LinearLayout>
-
         <ListView
-            android:id="@+id/listview"
+            android:id="@+id/listView_manager_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="#999999"
-            android:dividerHeight="1dp"></ListView>
+            android:dividerHeight="1dp">
+
+        </ListView>
+
+        <TextView
+            android:id="@+id/textView_manager_result"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            />
 
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>
