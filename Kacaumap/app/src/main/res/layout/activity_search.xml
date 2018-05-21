@@ -5,22 +5,26 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:orientation="horizontal">
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
 
         <EditText
             android:id="@+id/editSearch"
             android:layout_width="288dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="#d7d5d7"
             android:hint="검색어를 입력하세요." />
 
         <Button
             android:id="@+id/searchbtn"
-            android:layout_width="45dp"
+            android:layout_width="56dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/search_icon" />
-        <!-- android:id="@+id/editText_main_searchKeyword  -->
+            android:background="@drawable/search_icon"/>
 
     </LinearLayout>
 
