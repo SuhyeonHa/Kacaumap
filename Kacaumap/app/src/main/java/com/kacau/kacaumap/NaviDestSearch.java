@@ -307,8 +307,10 @@ public class NaviDestSearch extends AppCompatActivity {
                 String purpose = item.getString(TAG_Purpose);
 
                 String dept = item.getString(TAG_Dept);
+                if(dept.equals("null")) dept = "";
 
                 String telephone = item.getString(TAG_Telephone);
+                if(telephone.equals("null")) telephone = "";
 
                 HashMap<String, String> hashMap = new HashMap<>();
 

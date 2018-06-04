@@ -1,54 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kacau.kacaumap.ManagerSearch">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+    <include
+        layout="@layout/app_bar_manager_search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="59dp"
-            android:orientation="horizontal">
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
 
-
-            <EditText
-                android:id="@+id/editSearch"
-                android:layout_width="288dp"
-                android:layout_height="wrap_content"
-                android:hint="검색어를 입력하세요." />
-
-            <Button
-                android:id="@+id/searchbtn_manager"
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/search_icon" />
-
-        </LinearLayout>
-
-        <ListView
-            android:id="@+id/listView_manager_search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="#999999"
-            android:dividerHeight="1dp">
-
-        </ListView>
-
-        <TextView
-            android:id="@+id/textView_manager_result"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.4"
-            />
-
-    </LinearLayout>
-
-
-</android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.DrawerLayout>

@@ -12,7 +12,7 @@ import com.github.chrisbanes.photoview.PhotoView;
 public class InternalMap {
 
     // for bld 101
-    public class InternalMap101 extends AppCompatActivity {
+    public static class InternalMap101 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -21,6 +21,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_101);
 
             photoView = (PhotoView)findViewById(R.id.images101);
+            photoView.setImageResource(R.drawable.b101_1);
 
             final Button cl1 = (Button)findViewById(R.id.b_1) ;
             final Button cl2 = (Button)findViewById(R.id.b_2) ;
@@ -65,7 +66,7 @@ public class InternalMap {
     }
 
     // for bld 102
-    public class InternalMap102 extends AppCompatActivity {
+    public static class InternalMap102 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -74,6 +75,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_102);
 
             photoView = (PhotoView)findViewById(R.id.images102);
+            photoView.setImageResource(R.drawable.b102_1);
 
             final Button clb2 = (Button)findViewById(R.id.b_b2) ;
             final Button clb1 = (Button)findViewById(R.id.b_b1) ;
@@ -368,7 +370,7 @@ public class InternalMap {
     }
 
     // for bld 103
-    public class InternalMap103 extends AppCompatActivity {
+    public static class InternalMap103 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -377,13 +379,12 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_103);
 
             photoView = (PhotoView)findViewById(R.id.images103);
+            photoView.setImageResource(R.drawable.b103_1);
 
             final Button cl1 = (Button)findViewById(R.id.b_1) ;
             final Button cl2 = (Button)findViewById(R.id.b_2) ;
             final Button cl3 = (Button)findViewById(R.id.b_3) ;
             final Button cl4 = (Button)findViewById(R.id.b_4) ;
-
-
 
             // 1
             cl1.setOnClickListener(new View.OnClickListener() {
@@ -440,7 +441,7 @@ public class InternalMap {
     }
 
     // for bld 104
-    public class InternalMap104 extends AppCompatActivity {
+    public static class InternalMap104 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -449,6 +450,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_104);
 
             photoView = (PhotoView)findViewById(R.id.images104);
+            photoView.setImageResource(R.drawable.b104_1);
 
             final Button cl1 = (Button)findViewById(R.id.b_1) ;
             final Button cl2 = (Button)findViewById(R.id.b_2) ;
@@ -570,7 +572,7 @@ public class InternalMap {
     }
 
     // for bld 105
-    public class InternalMap105 extends AppCompatActivity {
+    public static class InternalMap105 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -579,6 +581,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_105);
 
             photoView = (PhotoView)findViewById(R.id.images105);
+            photoView.setImageResource(R.drawable.b105_1);
 
             final Button clb2 = (Button)findViewById(R.id.b_b2) ;
             final Button clb1 = (Button)findViewById(R.id.b_b1) ;
@@ -723,7 +726,7 @@ public class InternalMap {
     }
 
     // for bld 106
-    public class InternalMap106 extends AppCompatActivity {
+    public static class InternalMap106 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -732,6 +735,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_106);
 
             photoView = (PhotoView)findViewById(R.id.images106);
+            photoView.setImageResource(R.drawable.b106_1);
 
             final Button clb1 = (Button)findViewById(R.id.b_b1) ;
             final Button cl1 = (Button)findViewById(R.id.b_1) ;
@@ -833,7 +837,7 @@ public class InternalMap {
     }
 
     // for bld 107
-    public class InternalMap107 extends AppCompatActivity {
+    public static class InternalMap107 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -842,6 +846,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_107);
 
             photoView = (PhotoView)findViewById(R.id.images107);
+            photoView.setImageResource(R.drawable.b107_1);
 
             final Button cl1 = (Button)findViewById(R.id.b_1) ;
             final Button cl2 = (Button)findViewById(R.id.b_2) ;
@@ -940,7 +945,7 @@ public class InternalMap {
     }
 
     // for bld 201
-    public class InternalMap201 extends AppCompatActivity {
+    public static class InternalMap201 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -949,6 +954,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_201);
 
             photoView = (PhotoView)findViewById(R.id.images201);
+            photoView.setImageResource(R.drawable.b201_1);
 
             final Button cl1 = (Button)findViewById(R.id.b_1) ;
             final Button cl2 = (Button)findViewById(R.id.b_2) ;
@@ -992,7 +998,7 @@ public class InternalMap {
     }
 
     // for bld 202
-    public class InternalMap202 extends AppCompatActivity {
+    public static class InternalMap202 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -1001,6 +1007,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_202);
 
             photoView = (PhotoView)findViewById(R.id.images202);
+            photoView.setImageResource(R.drawable.b202_1);
 
             final Button clb1 = (Button)findViewById(R.id.b_b1) ;
             final Button cl1 = (Button)findViewById(R.id.b_1) ;
@@ -1097,7 +1104,7 @@ public class InternalMap {
     }
 
     // for bld 203
-    public class InternalMap203 extends AppCompatActivity {
+    public static class InternalMap203 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -1106,6 +1113,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_203);
 
             photoView = (PhotoView)findViewById(R.id.images203);
+            photoView.setImageResource(R.drawable.b203_1);
 
             final Button cl1 = (Button)findViewById(R.id.b_1) ;
             final Button cl2 = (Button)findViewById(R.id.b_2) ;
@@ -1245,7 +1253,7 @@ public class InternalMap {
     }
 
     // for bld 204
-    public class InternalMap204 extends AppCompatActivity {
+    public static class InternalMap204 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -1254,6 +1262,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_204);
 
             photoView = (PhotoView)findViewById(R.id.images204);
+            photoView.setImageResource(R.drawable.b204_1);
 
             final Button clb1 = (Button)findViewById(R.id.cl_b1) ;
             final Button cl1 = (Button)findViewById(R.id.cl_1) ;
@@ -1400,7 +1409,7 @@ public class InternalMap {
     }
 
     // for bld 207
-    public class InternalMap207 extends AppCompatActivity {
+    public static class InternalMap207 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -1409,6 +1418,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_207);
 
             photoView = (PhotoView)findViewById(R.id.images207);
+            photoView.setImageResource(R.drawable.b207_1);
 
             final Button clb1 = (Button)findViewById(R.id.b_b1) ;
             final Button cl1 = (Button)findViewById(R.id.b_1) ;
@@ -1550,7 +1560,7 @@ public class InternalMap {
     }
 
     // for bld 208
-    public class InternalMap208 extends AppCompatActivity{
+    public static class InternalMap208 extends AppCompatActivity{
         PhotoView photoView;
 
         @Override
@@ -1559,6 +1569,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_208);
 
             photoView = (PhotoView)findViewById(R.id.images208);
+            photoView.setImageResource(R.drawable.b208_1);
 
             final Button seb1 = (Button)findViewById(R.id.se_b1) ;
             final Button se1 = (Button)findViewById(R.id.se_1) ;
@@ -1679,7 +1690,7 @@ public class InternalMap {
     }
 
     // for bld 209
-    public class InternalMap209 extends AppCompatActivity {
+    public static class InternalMap209 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -1688,6 +1699,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_209);
 
             photoView = (PhotoView)findViewById(R.id.images209);
+            photoView.setImageResource(R.drawable.b209_1);
 
             final Button clb2 = (Button)findViewById(R.id.b_b2) ;
             final Button clb1 = (Button)findViewById(R.id.b_b1) ;
@@ -1882,7 +1894,7 @@ public class InternalMap {
     }
 
     // for bld 301
-    public class InternalMap301 extends AppCompatActivity {
+    public static class InternalMap301 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -1891,6 +1903,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_301);
 
             photoView = (PhotoView)findViewById(R.id.images301);
+            photoView.setImageResource(R.drawable.b301_1);
 
             final Button clb2 = (Button)findViewById(R.id.b_b2) ;
             final Button clb1 = (Button)findViewById(R.id.b_b1) ;
@@ -2118,7 +2131,7 @@ public class InternalMap {
     }
 
     // for bld 302
-    public class InternalMap302 extends AppCompatActivity {
+    public static class InternalMap302 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -2127,6 +2140,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_302);
 
             photoView = (PhotoView)findViewById(R.id.images302);
+            photoView.setImageResource(R.drawable.b302_1);
 
             final Button clb3 = (Button)findViewById(R.id.b_b3) ;
             final Button clb2 = (Button)findViewById(R.id.b_b2) ;
@@ -2269,7 +2283,7 @@ public class InternalMap {
     }
 
     // for bld 303
-    public class InternalMap303 extends AppCompatActivity {
+    public static class InternalMap303 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -2278,6 +2292,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_303);
 
             photoView = (PhotoView)findViewById(R.id.images303);
+            photoView.setImageResource(R.drawable.b303_1);
 
             final Button clb1 = (Button)findViewById(R.id.b_b1) ;
             final Button cl1 = (Button)findViewById(R.id.b_1) ;
@@ -2647,7 +2662,7 @@ public class InternalMap {
     }
 
     // for bld 304
-    public class InternalMap304 extends AppCompatActivity {
+    public static class InternalMap304 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -2656,6 +2671,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_304);
 
             photoView = (PhotoView)findViewById(R.id.images304);
+            photoView.setImageResource(R.drawable.b304_1);
 
             final Button clb1 = (Button)findViewById(R.id.b_b1) ;
             final Button cl1 = (Button)findViewById(R.id.b_1) ;
@@ -2697,7 +2713,7 @@ public class InternalMap {
     }
 
     // for bld 305
-    public class InternalMap305 extends AppCompatActivity {
+    public static class InternalMap305 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -2706,6 +2722,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_305);
 
             photoView = (PhotoView)findViewById(R.id.images305);
+            photoView.setImageResource(R.drawable.b305_1);
 
             final Button clb1 = (Button)findViewById(R.id.b_b1) ;
             final Button cl1 = (Button)findViewById(R.id.b_1) ;
@@ -2929,7 +2946,7 @@ public class InternalMap {
     }
 
     // for bld 307
-    public class InternalMap307 extends AppCompatActivity {
+    public static class InternalMap307 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -2938,6 +2955,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_307);
 
             photoView = (PhotoView)findViewById(R.id.images307);
+            photoView.setImageResource(R.drawable.b307_b1);
 
             final Button clb2 = (Button)findViewById(R.id.b_b2) ;
             final Button clb1 = (Button)findViewById(R.id.b_b1) ;
@@ -2968,7 +2986,7 @@ public class InternalMap {
     }
 
     // for bld 310
-    public class InternalMap310 extends AppCompatActivity {
+    public static class InternalMap310 extends AppCompatActivity {
         PhotoView photoView;
 
         @Override
@@ -2977,6 +2995,7 @@ public class InternalMap {
             setContentView(R.layout.activity_internal_map_310);
 
             photoView = (PhotoView)findViewById(R.id.images310);
+            photoView.setImageResource(R.drawable.b310_1);
 
             final Button beb6 = (Button)findViewById(R.id.be_b6) ;
             final Button beb5 = (Button)findViewById(R.id.be_b5) ;

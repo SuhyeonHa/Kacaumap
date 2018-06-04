@@ -7,10 +7,17 @@ import android.os.AsyncTask;
 
 import android.os.Bundle;
 
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.AdapterView;
@@ -56,17 +63,16 @@ import java.util.HashMap;
 import static android.R.attr.tag;
 
 
-public class ManagerSearch extends AppCompatActivity {
+public class ManagerSearch extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    public String inputPurpose = "default";
+    public String inputPurpose = "";
     private static final String TAG_JSON = "webnautes";
     private static final String TAG_Building = "building";
     private static final String TAG_RoomNum = "roomNum";
     private static final String TAG_Name = "name";
     private static final String TAG_Purpose = "purpose";
     private static final String TAG_Dept = "dept";
-    private static final String TAG_GateNum="gateNum";
     private static final String TAG_Telephone = "telephone";
     private static final String TAG_Longtitude = "longtitude";
     private static final String TAG_Latitude = "latitude";
@@ -85,8 +91,9 @@ public class ManagerSearch extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_manager_search);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         mTextViewResult = (TextView) findViewById(R.id.textView_manager_result);
 
@@ -145,7 +152,7 @@ public class ManagerSearch extends AppCompatActivity {
                 intent.putExtra("telephone", mArrayList.get(position).get(TAG_Telephone));
                 intent.putExtra("keyword", mEditTextSearchKeyword.getText().toString());
 
-                String[] searchInfo ={mArrayList.get(position).get(TAG_Building), mArrayList.get(position).get(TAG_RoomNum), mArrayList.get(position).get(TAG_GateNum)};
+                String[] searchInfo ={mArrayList.get(position).get(TAG_Building), mArrayList.get(position).get(TAG_RoomNum)};
                 intent.putExtra("searchInfo",searchInfo);
 
                 startActivity(intent);
@@ -153,6 +160,14 @@ public class ManagerSearch extends AppCompatActivity {
 
         mArrayList = new ArrayList<>();
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void showResult() {
@@ -183,11 +198,12 @@ public class ManagerSearch extends AppCompatActivity {
 
                 String purpose = item.getString(TAG_Purpose);
 
-                String dept = item.getString(TAG_Dept);
 
-                String gateNum = item.getString(TAG_GateNum);
+                String dept = item.getString(TAG_Dept);
+                if(dept.equals("null")) dept = "";
 
                 String telephone = item.getString(TAG_Telephone);
+                if(telephone.equals("null")) telephone = "";
 
                 HashMap<String, String> hashMap = new HashMap<>();
 
@@ -200,8 +216,6 @@ public class ManagerSearch extends AppCompatActivity {
                 hashMap.put(TAG_Purpose, purpose);
 
                 hashMap.put(TAG_Dept, dept);
-
-                hashMap.put(TAG_GateNum, gateNum);
 
                 hashMap.put(TAG_Telephone, telephone);
 
@@ -284,7 +298,7 @@ public class ManagerSearch extends AppCompatActivity {
 
             String searchKeyword = params[0];
 
-            String serverURL = "http://hyeonixd.cafe24.com/query3.php";
+            String serverURL = "http://hyeonixd.cafe24.com/searchQuery.php";
 
             //String postParameters = "keyword=" + searchKeyword;
 
@@ -366,6 +380,59 @@ public class ManagerSearch extends AppCompatActivity {
 
         }
 
+    }
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_search) {
+            Intent intent = new Intent(ManagerSearch.this, Search.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_navigation) {
+            Intent intent = new Intent(ManagerSearch.this, Navigation.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_adminlogin) {
+            Intent intent = new Intent(ManagerSearch.this, ManagerLogin.class);
+            startActivity(intent);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
 }

@@ -2,40 +2,98 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kacau.kacaumap">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_OWNER_DATA"></uses-permission>
-    <uses-permission android:name="android.permission.READ_OWNER_DATA"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_OWNER_DATA" />
+    <uses-permission android:name="android.permission.READ_OWNER_DATA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/kacaumap_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+        <activity android:name=".IntroActivity">
+
+
+        <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
-        <activity android:name=".ManagerEdit" />
-        <activity android:name=".Navigation" />
-        <activity android:name=".Search" />
-        <activity android:name=".ManagerSearch" />
-        <activity android:name=".ManagerLogin" />
-        <activity android:name=".ResultMap" />
-        <activity android:name=".NavigationMap" />
-        <activity android:name=".NaviStartSearch" />
-        <activity android:name=".NaviDestSearch" />
+        <activity
+            android:name=".ManagerEdit"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Navigation"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Search"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ManagerSearch"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ManagerLogin"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ResultMap"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NavigationMap"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NaviStartSearch"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NaviDestSearch"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".InternalMap$InternalMap101" />
+        <activity android:name=".InternalMap$InternalMap102" />
+        <activity android:name=".InternalMap$InternalMap103" />
+        <activity android:name=".InternalMap$InternalMap104" />
+        <activity android:name=".InternalMap$InternalMap105" />
+        <activity android:name=".InternalMap$InternalMap106" />
+        <activity android:name=".InternalMap$InternalMap107" />
+        <activity android:name=".InternalMap$InternalMap201" />
+        <activity android:name=".InternalMap$InternalMap202" />
+        <activity android:name=".InternalMap$InternalMap203" />
+        <activity android:name=".InternalMap$InternalMap204" />
+        <activity android:name=".InternalMap$InternalMap207" />
+        <activity android:name=".InternalMap$InternalMap208" />
+        <activity android:name=".InternalMap$InternalMap209" />
+        <activity android:name=".InternalMap$InternalMap301" />
+        <activity android:name=".InternalMap$InternalMap302" />
+        <activity android:name=".InternalMap$InternalMap303" />
+        <activity android:name=".InternalMap$InternalMap304" />
+        <activity android:name=".InternalMap$InternalMap305" />
+        <activity android:name=".InternalMap$InternalMap307" />
+        <activity android:name=".InternalMap$InternalMap310" />
     </application>
 
 </manifest>

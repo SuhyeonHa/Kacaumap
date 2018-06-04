@@ -1,14 +1,19 @@
 package com.kacau.kacaumap;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 
 import android.os.Bundle;
 
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import android.util.Log;
@@ -257,23 +262,33 @@ public class NaviStartSearch extends AppCompatActivity {
 
         mylocation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                GpsManager gpsManager = new GpsManager(NaviStartSearch.this);
-                gpsManager.getLocation();
-
-                String[] gps = {Double.toString(gpsManager.lat), Double.toString(gpsManager.lon)};
-
-
-                if(destPOI==null) {
-                    sdPOI= new String[]{"","","내위치","","",""};
+                LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+              if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)||ActivityCompat.checkSelfPermission(NaviStartSearch.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                            ActivityCompat.checkSelfPermission(NaviStartSearch.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        GpsManager gpsManager = new GpsManager(NaviStartSearch.this);
+                        gpsManager.showSettingsAlert();
+                        ActivityCompat.requestPermissions(NaviStartSearch.this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                        Toast.makeText(NaviStartSearch.this, "gps를 키지않으면 내위치로 출발지를 지정할 수 없습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    sdPOI= new String[]{"","","내위치", destPOI[0], destPOI[1], destPOI[2]};
-                }
+                    GpsManager gpsManager = new GpsManager(NaviStartSearch.this);
+                    gpsManager.getLocation();
 
-                Intent intent = new Intent(NaviStartSearch.this, Navigation.class);
-                intent.putExtra("gps", gps);
-                intent.putExtra("sdPOI", sdPOI);
-                startActivity(intent);
+                    String[] gps = {Double.toString(gpsManager.lat), Double.toString(gpsManager.lon)};
+
+
+                    if (destPOI == null) {
+                        sdPOI = new String[]{"", "", "내위치", "", "", ""};
+                    } else {
+                        sdPOI = new String[]{"", "", "내위치", destPOI[0], destPOI[1], destPOI[2]};
+                    }
+
+
+                    Intent intent = new Intent(NaviStartSearch.this, Navigation.class);
+                    intent.putExtra("gps", gps);
+                    intent.putExtra("sdPOI", sdPOI);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -330,8 +345,10 @@ public class NaviStartSearch extends AppCompatActivity {
                 String purpose = item.getString(TAG_Purpose);
 
                 String dept = item.getString(TAG_Dept);
+                if(dept.equals("null")) dept = "";
 
                 String telephone = item.getString(TAG_Telephone);
+                if(telephone.equals("null")) telephone = "";
 
                 HashMap<String, String> hashMap = new HashMap<>();
 

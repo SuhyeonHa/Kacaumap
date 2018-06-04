@@ -1,13 +1,20 @@
 package com.kacau.kacaumap;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.LinearLayout;
@@ -26,21 +33,49 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class NavigationMap extends AppCompatActivity
-        implements TMapGpsManager.onLocationChangedCallback{
+    public class NavigationMap extends AppCompatActivity
+            implements  TMapGpsManager.onLocationChangedCallback{
 
-    private boolean m_bTrackingMode = true;
-    private TMapGpsManager tmapgps = null;
-    private TMapView tMapView = null;
-    String TAG="phpquerytest";
-    String start;
-    String dest;
-    String[] gps;
-    String[] sdPOI;
-    String startNode;
-    String finalNode;
+        private boolean m_bTrackingMode = true;
+        private TMapGpsManager tmapgps = null;
+        private TMapView tMapView = null;
+        String TAG="phpquerytest";
+        String start;
+        String dest;
+        String[] gps;
+        String[] sdPOI;
+        String startNode;
+        String finalNode;
 
-
+//1. 내위치-건물
+//-내위치에서 가까운노드찾기(nearNodeQuery.php)
+//      -노드->건물 순서찾기(userNavigationQuery.php)
+//          -startNode랑 finalNode에 저장
+//          -path출력
+//          -getnodegps
+//            -startNode getnodegps
+//               -내위치(gps)랑 startnodegps랑 라인(1)
+//            -finalNode getnodegps
+//               -마커찍기 (2)
+//-내위치에 start마커
+//
+//2 건물-건물
+//-건물->건물 순서찾기    navigationQuery.php
+//    -startNode랑 finalNode에 저장
+//    -getnodegps
+//            -startNode getnodegps
+//               -마커찍기(3)
+//            -finalNode getnodegps
+//               -마커찍기 (2)
+//
+//
+//-출력
+//
+//3. getnodegps에서  (1)내위치랑 가까운노드연결
+//                   (2)도착마커찍기
+//            (3)건물출발지일때
+//
+//4. 엣지추가 class랑 BldToBldPath 중 onpost
 
 
     @Override
@@ -59,15 +94,17 @@ public class NavigationMap extends AppCompatActivity
         //지도
 
         //tMapView.setCompassMode(true);
-        Bitmap gpsmarker = BitmapFactory.decodeResource(getResources(),R.drawable.gpsmarker);
+//        Bitmap gpsmarker = BitmapFactory.decodeResource(getResources(),R.drawable.gpsmarker);
         tMapView.setIconVisibility(true);
-        tMapView.setIcon(gpsmarker);
+//        tMapView.setIcon(gpsmarker);
         tmapgps= new TMapGpsManager(NavigationMap.this);
         tmapgps.setMinTime(1000);
         tmapgps.setMinDistance(5);
         tmapgps.setProvider(tmapgps.NETWORK_PROVIDER);
-        tmapgps.OpenGps();
-        tMapView.setTrackingMode(true);
+        setGps();
+//        tmapgps.OpenGps();
+//        tMapView.setTrackingMode(true);
+        tMapView.setCompassMode(true);
         tMapView.setSightVisible(true);
         //현재위치마커
 
@@ -94,6 +131,46 @@ public class NavigationMap extends AppCompatActivity
             bldToBldPath.execute(sdPOI[0],sdPOI[3]);
         }
     }
+
+    public void setGps() {
+        final LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)||ActivityCompat.checkSelfPermission(NavigationMap.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(NavigationMap.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                GpsManager gpsManager=new GpsManager(NavigationMap.this);
+                gpsManager.showSettingsAlert();
+                ActivityCompat.requestPermissions(NavigationMap.this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                Toast.makeText(NavigationMap.this, "위치정보를 받아올 수 없습니다.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, // 등록할 위치제공자(실내에선 NETWORK_PROVIDER 권장)
+                    1000, // 통지사이의 최소 시간간격 (miliSecond)
+                    1, // 통지사이의 최소 변경거리 (m)
+                    mLocationListener);
+        }
+    }
+
+    private final LocationListener mLocationListener = new LocationListener() {
+        public void onLocationChanged(Location location) {
+
+            if (location != null) {
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
+                tMapView.setLocationPoint(longitude, latitude);
+                tMapView.setCenterPoint(longitude, latitude);
+            }
+
+        }
+
+        public void onProviderDisabled(String provider) {
+        }
+
+        public void onProviderEnabled(String provider) {
+        }
+
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+        }
+    };
+
     @Override
     public void onLocationChange(Location location) {
         if (m_bTrackingMode){
@@ -156,7 +233,6 @@ public class NavigationMap extends AppCompatActivity
 
                 NearNodeJsonString = result;
                 this.NodeId=substringBetween(this.NearNodeJsonString,"nodeId\":\"","\"}");
-                Toast.makeText(getApplicationContext(),"nearNode"+":"+NodeId,Toast.LENGTH_SHORT).show();
                 UserToBldPath userToBldPath =new UserToBldPath();
                 userToBldPath.execute(NodeId,sdPOI[3]);
             }
@@ -296,7 +372,7 @@ public class NavigationMap extends AppCompatActivity
                     start = nodeOrder.get(i);
                     dest = nodeOrder.get(i + 1);
 
-                    if (start.compareTo(dest) > 0) {
+                    if (Integer.valueOf(start)>Integer.valueOf(dest)) {
                         String temp;
                         temp = start;
                         start = dest;
@@ -389,6 +465,10 @@ public class NavigationMap extends AppCompatActivity
                             tMapView.addTMapPolyLine("n16n17", edges.n16n17.tMapPolyLine);
                         else if (dest.equals("18"))
                             tMapView.addTMapPolyLine("n16n18", edges.n16n18.tMapPolyLine);
+                    }
+                    else if(start.equals("17")) {
+                        if (dest.equals("58"))
+                            tMapView.addTMapPolyLine("n17n58", edges.n17n58.tMapPolyLine);
                     }
                     else if (start.equals("18")) {
                         if (dest.equals("19"))
@@ -656,7 +736,7 @@ public class NavigationMap extends AppCompatActivity
                     start = nodeOrder.get(i);
                     dest = nodeOrder.get(i + 1);
 
-                    if (start.compareTo(dest) > 0) {
+                    if (Integer.valueOf(start)>Integer.valueOf(dest)) {
                         String temp;
                         temp = start;
                         start = dest;
@@ -748,6 +828,10 @@ public class NavigationMap extends AppCompatActivity
                             tMapView.addTMapPolyLine("n16n17", edges.n16n17.tMapPolyLine);
                         else if (dest.equals("18"))
                             tMapView.addTMapPolyLine("n16n18", edges.n16n18.tMapPolyLine);
+                    }
+                    else if(start.equals("17")) {
+                        if (dest.equals("58"))
+                            tMapView.addTMapPolyLine("n17n58", edges.n17n58.tMapPolyLine);
                     }
                     else if (start.equals("18")) {
                         if (dest.equals("19"))
@@ -877,7 +961,6 @@ public class NavigationMap extends AppCompatActivity
                 getNodeGps.execute(startNode);
                 GetNodeGps getNodeGps1=new GetNodeGps(2);
                 getNodeGps1.execute(finalNode);
-                Toast.makeText(getApplicationContext(),"nodeOrder"+":"+PathString,Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -1027,7 +1110,7 @@ public class NavigationMap extends AppCompatActivity
                     destmarkerItem.setName("destMarker"); // 마커의 타이틀 지정
                     tMapView.addMarkerItem("destMarker", destmarkerItem); // 지도에 마커 추가
                 }
-                else {  //출발마커
+                else {  //출발마커  useInfo==3
                     tMapPoint1 = new TMapPoint(Double.parseDouble(latitude),Double.parseDouble(longitude));
                     TMapMarkerItem startmarkerItem = new TMapMarkerItem();
                     Bitmap startmarker = BitmapFactory.decodeResource(getResources(), R.drawable.startmarker);

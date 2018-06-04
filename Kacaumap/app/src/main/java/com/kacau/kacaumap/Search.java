@@ -8,10 +8,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.AdapterView;
@@ -19,6 +26,7 @@ import android.widget.Button;
 
 import android.widget.EditText;
 
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 
 import android.widget.ListView;
@@ -57,7 +65,7 @@ import java.util.HashMap;
 import static android.R.attr.tag;
 
 
-public class Search extends AppCompatActivity {
+public class Search extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public String inputPurpose = "";
     private static final String TAG_JSON = "webnautes";
@@ -78,10 +86,10 @@ public class Search extends AppCompatActivity {
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_search);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         mTextViewResult = (TextView) findViewById(R.id.textView_main_result);
 
@@ -99,12 +107,12 @@ public class Search extends AppCompatActivity {
         Button button_7 = (Button) findViewById(R.id.btn7);
         Button button_8 = (Button) findViewById(R.id.btn8);
 
-        String SearchKeywordOnMap=null;
-        Intent intent =getIntent();
-        SearchKeywordOnMap= intent.getStringExtra("SearchKeywordOnMap");
+        String SearchKeywordOnMap = null;
+        Intent intent = getIntent();
+        SearchKeywordOnMap = intent.getStringExtra("SearchKeywordOnMap");
         mEditTextSearchKeyword.setText(SearchKeywordOnMap);
 
-        if(SearchKeywordOnMap!=null) {
+        if (SearchKeywordOnMap != null) {
             GetData task = new GetData();
             task.execute(SearchKeywordOnMap);
         }
@@ -119,7 +127,7 @@ public class Search extends AppCompatActivity {
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
 
-                inputPurpose="";
+                inputPurpose = "";
 
             }
 
@@ -134,7 +142,7 @@ public class Search extends AppCompatActivity {
                 GetData task = new GetData();
 
                 //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
-                inputPurpose="학생지원";
+                inputPurpose = "학생지원";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
             }
@@ -150,7 +158,7 @@ public class Search extends AppCompatActivity {
                 GetData task = new GetData();
 
                 //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
-                inputPurpose="강의실";
+                inputPurpose = "강의실";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
             }
@@ -166,7 +174,7 @@ public class Search extends AppCompatActivity {
                 GetData task = new GetData();
 
                 //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
-                inputPurpose="실습실";
+                inputPurpose = "실습실";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
             }
@@ -182,7 +190,7 @@ public class Search extends AppCompatActivity {
                 GetData task = new GetData();
 
                 //inPutData= ((EditText)(findViewById(R.id.editSearch))).getText().toString();
-                inputPurpose="연구실";
+                inputPurpose = "연구실";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
             }
@@ -197,7 +205,7 @@ public class Search extends AppCompatActivity {
 
                 GetData task = new GetData();
 
-                inputPurpose="학생활동실";
+                inputPurpose = "학생활동실";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
             }
@@ -212,7 +220,7 @@ public class Search extends AppCompatActivity {
 
                 GetData task = new GetData();
 
-                inputPurpose="열람실";
+                inputPurpose = "열람실";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
             }
@@ -227,7 +235,7 @@ public class Search extends AppCompatActivity {
 
                 GetData task = new GetData();
 
-                inputPurpose="편의시설";
+                inputPurpose = "편의시설";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
             }
@@ -242,7 +250,7 @@ public class Search extends AppCompatActivity {
 
                 GetData task = new GetData();
 
-                inputPurpose="기타";
+                inputPurpose = "기타";
 
                 task.execute(mEditTextSearchKeyword.getText().toString());
             }
@@ -250,22 +258,31 @@ public class Search extends AppCompatActivity {
         });
 
 
-
-        mListViewList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        mListViewList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String item = String.valueOf(parent.getItemAtPosition(position));
-                Toast.makeText(Search.this, item, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Search.this, item, Toast.LENGTH_SHORT).show();
 
-                String[] searchPOI={mArrayList.get(position).get(TAG_Building),mArrayList.get(position).get(TAG_RoomNum)};
+                String[] searchPOI = {mArrayList.get(position).get(TAG_Building), mArrayList.get(position).get(TAG_RoomNum)};
 
                 Intent intent = new Intent(Search.this, ResultMap.class);
-                intent.putExtra("POI",searchPOI);
+                intent.putExtra("POI", searchPOI);
                 startActivity(intent);
 
-            }});
+            }
+        });
         mArrayList = new ArrayList<>();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void showResult() {
@@ -297,8 +314,11 @@ public class Search extends AppCompatActivity {
                 String purpose = item.getString(TAG_Purpose);
 
                 String dept = item.getString(TAG_Dept);
+                if(dept.equals("null")) dept = "";
 
                 String telephone = item.getString(TAG_Telephone);
+                if(telephone.equals("null")) telephone = "";
+
 
                 HashMap<String, String> hashMap = new HashMap<>();
 
@@ -326,7 +346,7 @@ public class Search extends AppCompatActivity {
                     new String[]{TAG_Building, TAG_RoomNum, TAG_Name, TAG_Purpose, TAG_Dept, TAG_Telephone},
 
                     new int[]{R.id.textView_list_building, R.id.textView_list_roomNum, R.id.textView_list_name,
-                            R.id.textView_list_purpose,R.id.textView_list_dept,R.id.textView_list_telephone}//gateNum 추가 안함
+                            R.id.textView_list_purpose, R.id.textView_list_dept, R.id.textView_list_telephone}//gateNum 추가 안함
 
             );
 
@@ -396,7 +416,6 @@ public class Search extends AppCompatActivity {
             String serverURL = "http://hyeonixd.cafe24.com/searchQuery.php";
 
             //String postParameters = "keyword=" + searchKeyword;
-
 
 
             StringBuffer buffer = new StringBuffer();
@@ -475,5 +494,60 @@ public class Search extends AppCompatActivity {
 
         }
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_search) {
+            Intent intent = new Intent(Search.this, Search.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_navigation) {
+            Intent intent = new Intent(Search.this, Navigation.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_adminlogin) {
+            Intent intent = new Intent(Search.this, ManagerLogin.class);
+            startActivity(intent);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

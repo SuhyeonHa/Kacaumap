@@ -60,6 +60,7 @@ public class Edges {
     N39N43 n39n43 = new N39N43();
     N40N41 n40n41 = new N40N41();
     N41N42 n41n42 = new N41N42();
+    //여기서부터 건물과의 추가 edge
     N3N44 n3n44 = new N3N44();
     N5N45 n5n45=new N5N45();
     N6N46 n6n46=new N6N46();
@@ -1018,7 +1019,7 @@ public class Edges {
             tMapPolyLine.setLineColor(Color.BLUE);
             tMapPolyLine.setLineWidth(2);
             tMapPoint1 = new TMapPoint(37.50489,126.954118);
-            tMapPoint2 = new TMapPoint(37.505066,37.505066);
+            tMapPoint2 = new TMapPoint(37.505066,126.9543);
             tMapPolyLine.addLinePoint(tMapPoint1);
             tMapPolyLine.addLinePoint(tMapPoint2);
         }

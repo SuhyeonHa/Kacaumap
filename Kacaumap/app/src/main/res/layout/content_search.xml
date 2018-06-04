@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.kacau.kacaumap.Search"
+    tools:showIn="@layout/app_bar_search">
+
 
     <LinearLayout
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="59dp"
         android:gravity="center"
         android:orientation="horizontal">
 
+
         <EditText
             android:id="@+id/editSearch"
-            android:layout_width="275dp"
-            android:gravity="center"
+            android:layout_width="288dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="#d7d5d7"
             android:hint="검색어를 입력하세요." />
 
         <Button
             android:id="@+id/searchbtn"
             android:layout_width="53dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_height="wrap_content"
             android:background="@drawable/search_icon" />
-        <!-- android:id="@+id/editText_main_searchKeyword  -->
-
-        <!--<Button-->
-            <!--android:id="@+id/mylocation"-->
-            <!--android:layout_width="55dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="내위치로"-->
-            <!--android:textColor="#8f0305"-->
-            <!--android:background="#00000000"/>-->
 
     </LinearLayout>
 

@@ -53,7 +53,7 @@ public class ResultMap extends AppCompatActivity {
         tMapView.setSKTMapApiKey("28f96670-7443-42b8-ba92-6cf3e2b1e8f2");
         ResultTmap.addView(tMapView);
         tMapView.setCenterPoint(126.956895, 37.504242);
-        tMapView.setZoomLevel(17);
+        tMapView.setZoomLevel(16);
         tMapView.setLanguage(TMapView.LANGUAGE_KOREAN);
 //지도띄우기
 
@@ -175,6 +175,9 @@ public class ResultMap extends AppCompatActivity {
                 markerItem1.setTMapPoint(tMapPoint1); // 마커의 좌표 지정
                 markerItem1.setName("마커"); // 마커의 타이틀 지정
                 tMapView.addMarkerItem("markerItem1", markerItem1); // 지도에 마커 추가
+
+//                tMapView.setCenterPoint(Double.parseDouble(latitude), Double.parseDouble(longitude));
+
 
             }
         }
