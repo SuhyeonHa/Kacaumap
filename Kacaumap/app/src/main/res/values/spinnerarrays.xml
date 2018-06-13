@@ -14,6 +14,7 @@
     </string-array>
 
     <string-array name="dept">
+        <item></item>
         <item>간호학과</item>
         <item>건축학부</item>
         <item>경영학부</item>
