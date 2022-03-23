@@ -23,15 +23,15 @@
   - 정보 수정
 
 ## 데모 화면
-<img src="images/screen_search.png" height="200"></img>
+<img src="images/screen_search.png" height="300"></img>
 
 장소검색(필터링) 스크린 화면
 
-<img src="images/screen_map.png" height="200"></img>
+<img src="images/screen_map.png" height="300"></img>
 
 장소검색(내부지도) 스크린 화면
 
-<img src="images/screen_path.png" height="200"></img>
+<img src="images/screen_path.png" height="300"></img>
 
 길 찾기(내 위치에서) 스크린 화면
 
