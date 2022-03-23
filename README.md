@@ -36,6 +36,6 @@
 < 길 찾기(내 위치에서) 스크린 화면 >
 
 ## 사용법
-Kacaumap/APK_manual/APK/app-release.apk 파일을 다운받아 실행합니다.
+[app-release.apk](https://github.com/SuhyeonHa/Kacaumap/tree/master/APK_manual/APK) 파일을 다운받아 실행합니다.
 
-자세한 사용법은 사용자매뉴얼(Kacaumap/APK_manual/카카우맵 사용자매뉴얼 v1806.pdf)을 참고해주세요.
+자세한 사용법은 [사용자매뉴얼](https://github.com/SuhyeonHa/Kacaumap/tree/master/APK_manual)을 참고해주세요.
